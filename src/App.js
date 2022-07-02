@@ -1,13 +1,6 @@
 import { Link, Routes, Route } from "react-router-dom";
 import styled, { css } from "styled-components";
-// import logo from "./logo.svg";
-// import "./App.css";
-
-const Header = styled.header`
-  border: 1px solid #c2bebe;
-  width: 1000px;
-  height: 70px;
-`;
+import { Header } from "./Header";
 const Body = styled.div`
   display: flex;
   width: 1000px;
