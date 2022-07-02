@@ -1,4 +1,4 @@
-import { Link, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import Header from "./Header";
@@ -49,7 +49,9 @@ const Pagination = styled.div`
 
 function App() {
   const [todoList, setTodoList] = useState([]);
+  const navigate = useNavigate();
 
+  // READ
   async function refresh() {
     const resp = await fetch("http://localhost:3333/todolist");
     const data = await resp.json();
@@ -67,29 +69,44 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ todo, tag }),
+      body: JSON.stringify({ todo, tag, complete: "false" }),
     });
 
     const data = await resp.json();
     // console.log("added data : ", data);
 
     refresh();
+    navigate("/");
   }
 
   // UPDATE
-  async function updateHandler(id, todo, tag) {
+  async function updateHandler(todo, tag, complete, id) {
     const resp = await fetch("http://localhost:3333/todolist/" + id, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ todo, tag }),
+      body: JSON.stringify({ todo, tag, complete }),
     });
 
     const data = await resp.json();
     // console.log("updated data : ", data);
 
     refresh();
+    navigate("/");
+  }
+
+  // DELETE
+  async function deleteHandler(id) {
+    const resp = await fetch("http://localhost:3333/todolist/" + id, {
+      method: "DELETE",
+    });
+
+    const data = await resp.json();
+    console.log("deleted data : ", data);
+
+    refresh();
+    navigate("/");
   }
 
   return (
@@ -106,7 +123,12 @@ function App() {
               <Route
                 exact
                 path="/"
-                element={<TodoList todoList={todoList}></TodoList>}
+                element={
+                  <TodoList
+                    todoList={todoList}
+                    onDelete={deleteHandler}
+                  ></TodoList>
+                }
               ></Route>
               <Route
                 path="/update/:id"
