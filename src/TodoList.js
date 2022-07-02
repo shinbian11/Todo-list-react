@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const TodoListStyled = styled.div`
   width: 800px;
@@ -7,12 +8,15 @@ const TodoListStyled = styled.div`
 `;
 
 function TodoList({ todoList }) {
-  console.log(todoList);
+  // console.log(todoList);
   return (
     <TodoListStyled>
       {todoList.map((item) => (
         <div key={`${item.todo}-${item.tag}-${item.id}`}>
           {item.todo}, {item.tag}, {item.id}
+          <Link to={`/update/${item.id}`}>
+            <button>Update</button>
+          </Link>
         </div>
       ))}
     </TodoListStyled>

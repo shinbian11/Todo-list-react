@@ -1,19 +1,24 @@
 {
   "todolist": [
     {
-      "id": 1,
-      "tag": "study",
-      "todo": "영어공부하기"
+      "todo": "영어공부하기1",
+      "tag": "study1",
+      "id": 1
     },
     {
-      "id": 2,
-      "tag": "play",
-      "todo": "야외에서 놀기"
+      "todo": "휴식2",
+      "tag": "휴식2",
+      "id": 2
     },
     {
-      "id": 3,
-      "tag": "homework",
-      "todo": "숙제하기"
+      "todo": "숙제하기3",
+      "tag": "homework3",
+      "id": 3
+    },
+    {
+      "todo": "수학공부하기4",
+      "tag": "study4",
+      "id": 4
     }
   ]
 }

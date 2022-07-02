@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import Header from "./Header";
 import TodoList from "./TodoList";
-import AddTodoInput from "./AddTodoInput";
+import AddTodo from "./AddTodo";
+import UpdateTodo from "./UpdateTodo";
 
 const Body = styled.div`
   display: flex;
@@ -55,6 +56,7 @@ function App() {
     refresh();
   }, []);
 
+  // CREATE
   async function createHandler(todo, tag) {
     const resp = await fetch("http://localhost:3333/todolist", {
       method: "POST",
@@ -65,7 +67,23 @@ function App() {
     });
 
     const data = await resp.json();
-    console.log("added data : ", data);
+    // console.log("added data : ", data);
+
+    refresh();
+  }
+
+  // UPDATE
+  async function updateHandler(id, todo, tag) {
+    const resp = await fetch("http://localhost:3333/todolist/" + id, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ todo, tag }),
+    });
+
+    const data = await resp.json();
+    // console.log("updated data : ", data);
 
     refresh();
   }
@@ -78,9 +96,19 @@ function App() {
         <Container>
           <DateComponent></DateComponent>
           <TodoComponent>
-            <AddTodoInput onCreate={createHandler}></AddTodoInput>
+            <AddTodo onCreate={createHandler}></AddTodo>
             <CountTodoList></CountTodoList>
-            <TodoList todoList={todoList}></TodoList>
+            <Routes>
+              <Route
+                exact
+                path="/"
+                element={<TodoList todoList={todoList}></TodoList>}
+              ></Route>
+              <Route
+                path="/update/:id"
+                element={<UpdateTodo onUpdate={updateHandler}></UpdateTodo>}
+              ></Route>
+            </Routes>
           </TodoComponent>
 
           <Pagination></Pagination>
