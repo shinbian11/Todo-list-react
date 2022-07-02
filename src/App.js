@@ -8,9 +8,27 @@ import UpdateTodo from "./UpdateTodo";
 import CountTodoList from "./CountTodoList";
 import DateComponent from "./DateComponent";
 
-// 디자인은 나중에
-// 일단 Todo List 부터 만들기
-// npx json-server --watch -p 3333 db.json 명령어를 이용하여 json-server로 mock 데이터를 일단 보관하여 사용 중
+{
+  /* 
+  
+  <앞으로의 계획>
+
+
+- 디자인은 나중에
+- 일단 Todo List 부터 만들기
+- npx json-server --watch -p 3333 db.json 명령어를 이용하여 json-server로 mock 데이터를 일단 보관하여 사용 중
+
+
+- 1단계) db.json 파일 : '날짜별'로 Todoitem들 저장하기
+    - 예시) ["date" : "2022-07-02", "todolist":[{},{}, ...]] 가 한 덩어리로
+
+- 2단계) db.json 파일 : '주제별'로 item들 저장하기
+    - 예시) Todo list / 고민 공유 / 게시글 / Diary >> 주제별로 저장 (store가 주제별로 있는 느낌) 
+
+- 3단계) slice를 만들어야 하나...? createSlice 를 만들어서 리팩토링 할지도 고민해보기 
+
+*/
+}
 
 const Body = styled.div`
   display: flex;
