@@ -69,7 +69,7 @@ function App() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ todo, tag, complete: "false" }),
+      body: JSON.stringify({ todo, tag, complete: false }),
     });
 
     const data = await resp.json();
@@ -80,13 +80,13 @@ function App() {
   }
 
   // UPDATE
-  async function updateHandler(todo, tag, complete, id) {
+  async function updateHandler(id, todo, tag) {
     const resp = await fetch("http://localhost:3333/todolist/" + id, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ todo, tag, complete }),
+      body: JSON.stringify({ todo, tag }),
     });
 
     const data = await resp.json();
@@ -103,7 +103,7 @@ function App() {
     });
 
     const data = await resp.json();
-    console.log("deleted data : ", data);
+    // console.log("deleted data : ", data);
 
     refresh();
     navigate("/");
@@ -127,6 +127,7 @@ function App() {
                   <TodoList
                     todoList={todoList}
                     onDelete={deleteHandler}
+                    setTodoList={setTodoList}
                   ></TodoList>
                 }
               ></Route>

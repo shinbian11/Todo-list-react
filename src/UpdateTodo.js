@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 const UpdateTodoStyled = styled.div`
   width: 800px;
@@ -11,8 +11,6 @@ const UpdateTodoStyled = styled.div`
 function UpdateTodo({ onUpdate }) {
   const params = useParams();
   const id = Number(params.id);
-
-  const navigate = useNavigate();
 
   const [todo, setTodo] = useState("");
   const [tag, setTag] = useState("");
@@ -33,7 +31,6 @@ function UpdateTodo({ onUpdate }) {
 
     onUpdate(id, todo, tag);
 
-    navigate("/");
     // setTodo("");
     // setTag("");
   }
