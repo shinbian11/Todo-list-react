@@ -6,6 +6,10 @@ import TodoList from "./TodoList";
 import AddTodo from "./AddTodo";
 import UpdateTodo from "./UpdateTodo";
 
+// 디자인은 나중에
+// 일단 Todo List 부터 만들기
+// npx json-server --watch -p 3333 db.json 명령어를 이용하여 json-server로 mock 데이터를 일단 보관하여 사용 중
+
 const Body = styled.div`
   display: flex;
   width: 1000px;
