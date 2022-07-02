@@ -6,6 +6,7 @@ import TodoList from "./TodoList";
 import AddTodo from "./AddTodo";
 import UpdateTodo from "./UpdateTodo";
 import CountTodoList from "./CountTodoList";
+import DateComponent from "./DateComponent";
 
 // 디자인은 나중에
 // 일단 Todo List 부터 만들기
@@ -25,11 +26,6 @@ const Container = styled.div`
   width: 800px;
   height: 800px;
   border: 1px solid #faf1f0;
-`;
-const DateComponent = styled.div`
-  width: 800px;
-  height: 100px;
-  border: 1px solid black;
 `;
 const TodoComponent = styled.div`
   width: 800px;
