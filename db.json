@@ -4,6 +4,16 @@
       "id": 1,
       "tag": "study",
       "todo": "영어공부하기"
+    },
+    {
+      "id": 2,
+      "tag": "play",
+      "todo": "야외에서 놀기"
+    },
+    {
+      "id": 3,
+      "tag": "homework",
+      "todo": "숙제하기"
     }
   ]
 }

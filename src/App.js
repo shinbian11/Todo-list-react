@@ -1,6 +1,10 @@
 import { Link, Routes, Route } from "react-router-dom";
+import { useEffect, useState } from "react";
 import styled, { css } from "styled-components";
-import { Header } from "./Header";
+import Header from "./Header";
+import TodoList from "./TodoList";
+import AddTodoInput from "./AddTodoInput";
+
 const Body = styled.div`
   display: flex;
   width: 1000px;
@@ -27,20 +31,10 @@ const TodoComponent = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const AddTodoInput = styled.div`
-  width: 800px;
-  height: 100px;
-  border: 1px solid red;
-`;
 const CountTodoList = styled.div`
   width: 800px;
   height: 100px;
   border: 1px solid blue;
-`;
-const TodoList = styled.div`
-  width: 800px;
-  height: 600px;
-  border: 1px solid green;
 `;
 const Pagination = styled.div`
   width: 800px;
@@ -49,21 +43,44 @@ const Pagination = styled.div`
 `;
 
 function App() {
+  const [todoList, setTodoList] = useState([]);
+
+  async function refresh() {
+    const resp = await fetch("http://localhost:3333/todolist");
+    const data = await resp.json();
+    setTodoList((current) => data);
+  }
+
+  useEffect(() => {
+    refresh();
+  }, []);
+
+  async function createHandler(todo, tag) {
+    const resp = await fetch("http://localhost:3333/todolist", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ todo, tag }),
+    });
+
+    const data = await resp.json();
+    console.log("added data : ", data);
+
+    refresh();
+  }
+
   return (
     <>
-      <Header>
-        <h1>
-          <Link to="/">Todo-List Title</Link>
-        </h1>
-      </Header>
+      <Header></Header>
       <Body>
         <SideBar></SideBar>
         <Container>
           <DateComponent></DateComponent>
           <TodoComponent>
-            <AddTodoInput></AddTodoInput>
+            <AddTodoInput onCreate={createHandler}></AddTodoInput>
             <CountTodoList></CountTodoList>
-            <TodoList></TodoList>
+            <TodoList todoList={todoList}></TodoList>
           </TodoComponent>
 
           <Pagination></Pagination>
