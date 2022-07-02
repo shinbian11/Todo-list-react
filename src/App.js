@@ -5,6 +5,7 @@ import Header from "./Header";
 import TodoList from "./TodoList";
 import AddTodo from "./AddTodo";
 import UpdateTodo from "./UpdateTodo";
+import CountTodoList from "./CountTodoList";
 
 // 디자인은 나중에
 // 일단 Todo List 부터 만들기
@@ -36,11 +37,6 @@ const TodoComponent = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const CountTodoList = styled.div`
-  width: 800px;
-  height: 100px;
-  border: 1px solid blue;
-`;
 const Pagination = styled.div`
   width: 800px;
   height: 100px;
@@ -49,13 +45,16 @@ const Pagination = styled.div`
 
 function App() {
   const [todoList, setTodoList] = useState([]);
+  const [todoListLength, setTodoListLength] = useState(0);
+
   const navigate = useNavigate();
 
   // READ
   async function refresh() {
     const resp = await fetch("http://localhost:3333/todolist");
     const data = await resp.json();
-    setTodoList((current) => data);
+    setTodoList(data);
+    setTodoListLength(data.length);
   }
 
   useEffect(() => {
@@ -118,7 +117,8 @@ function App() {
           <DateComponent></DateComponent>
           <TodoComponent>
             <AddTodo onCreate={createHandler}></AddTodo>
-            <CountTodoList></CountTodoList>
+
+            <CountTodoList todoListLength={todoListLength}></CountTodoList>
             <Routes>
               <Route
                 exact

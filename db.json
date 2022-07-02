@@ -2,23 +2,21 @@
   "todolist": [
     {
       "todo": "영어공부하기1",
-      "tag": "study1",
+      "tag": "공부1",
+      "complete": false,
       "id": 1
     },
     {
-      "todo": "휴식2",
-      "tag": "휴식2",
+      "todo": "영어공부하기2",
+      "tag": "공부2",
+      "complete": false,
       "id": 2
     },
     {
-      "todo": "숙제하기3",
-      "tag": "homework3",
+      "todo": "영어공부하기3",
+      "tag": "공부3",
+      "complete": false,
       "id": 3
-    },
-    {
-      "todo": "수학공부하기4",
-      "tag": "study4",
-      "id": 4
     }
   ]
 }
