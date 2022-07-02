@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { useState } from "react";
 
-const AddTodoInputStyled = styled.div`
+const AddTodoStyled = styled.div`
   width: 800px;
   height: 400px;
   border: 1px solid red;
 `;
 
-function AddTodoInput({ onCreate }) {
+function AddTodo({ onCreate }) {
   const [todo, setTodo] = useState("");
   const [tag, setTag] = useState("");
 
@@ -21,7 +21,7 @@ function AddTodoInput({ onCreate }) {
   }
 
   return (
-    <AddTodoInputStyled>
+    <AddTodoStyled>
       <article>
         <h1>Add</h1>
         <form onSubmit={submitHandler}>
@@ -52,8 +52,8 @@ function AddTodoInput({ onCreate }) {
           </p>
         </form>
       </article>
-    </AddTodoInputStyled>
+    </AddTodoStyled>
   );
 }
 
-export default AddTodoInput;
+export default AddTodo;
